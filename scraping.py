@@ -12,7 +12,9 @@ options.add_argument('--headless')
 browser = webdriver.Chrome('C:/Users/hdais/Dropbox/github/kaggle-ranking/driver/chromedriver_win32' + '/chromedriver',options=options)
 
 #browser.get('https://www.kaggle.com/rankings?group=competitions')
-browser.get('https://www.kaggle.com/rankings?group=datasets&page=1&pageSize=20')
+browser.get('https://www.kaggle.com/rankings?group=datasets')
+browser.get('https://www.kaggle.com/rankings?group=notebooks')
+browser.get('https://www.kaggle.com/rankings?group=discussion')
 element=browser.find_element_by_xpath("/html/body/main/div[1]/div/div[5]/div[3]")
 length=0
 
