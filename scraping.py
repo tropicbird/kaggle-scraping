@@ -11,16 +11,22 @@ options = Options()
 options.add_argument('--headless')
 browser = webdriver.Chrome('C:/Users/hdais/Dropbox/github/kaggle-ranking/driver/chromedriver_win32' + '/chromedriver',options=options)
 
-browser.get('https://www.kaggle.com/rankings?group=competitions')
+#browser.get('https://www.kaggle.com/rankings?group=competitions')
+browser.get('https://www.kaggle.com/rankings?group=datasets&page=1&pageSize=20')
 element=browser.find_element_by_xpath("/html/body/main/div[1]/div/div[5]/div[3]")
 length=0
 
-# while length<60000:
-while length<5000:
+print('Scrolling Sarted')
+while length<60000:
+#while length<5000:
+    tmp=length
     browser.execute_script("return arguments[0].scrollIntoView(false);", element)
     length=browser.execute_script("return arguments[0].scrollHeight", element)
     time.sleep(3)
-print(length)
+    print(length)
+    if tmp==length:
+        break    
+print('Scrolling Ended')
 
 # from tqdm.notebook import tqdm
 from tqdm import tqdm
@@ -34,29 +40,38 @@ gold_ls=[]
 silver_ls=[]
 bronze_ls=[]
 points_ls=[]
-# for i in tqdm(range(1000)):
-for i in tqdm(range(50)):
-    userdata = base.find_element_by_xpath(f'div[{i+2}]/div/div')  
-    rank=userdata.find_element_by_xpath('div[1]') .text
-    tier=userdata.find_element_by_xpath('div[2]/img') .get_attribute('title')
-    name=userdata.find_element_by_xpath('div[4]/p[1]/a') .text
-    url=userdata.find_element_by_xpath('div[4]/p[1]/a') .get_attribute('href')
-    gold=userdata.find_element_by_xpath('div[5]/div[1]/div[2]') .text
-    silver=userdata.find_element_by_xpath('div[5]/div[2]/div[2]') .text
-    bronze=userdata.find_element_by_xpath('div[5]/div[3]/div[2]') .text
-    points=userdata.find_element_by_xpath('div[6]') .text
-    points=points.replace(',','')
-    
-    rank_ls.append(rank)
-    tier_ls.append(tier)
-    name_ls.append(name)
-    url_ls.append(url)
-    gold_ls.append(gold)
-    silver_ls.append(silver)
-    bronze_ls.append(bronze)
-    points_ls.append(points)
-    if i%100==0:
-        print(i)
+
+print('Scraping from the ranking started')
+for i in tqdm(range(1000)):
+#for i in tqdm(range(50)):
+    try:
+        userdata = base.find_element_by_xpath(f'div[{i+2}]/div/div')  
+        rank=userdata.find_element_by_xpath('div[1]') .text
+        tier=userdata.find_element_by_xpath('div[2]/img') .get_attribute('title')
+        name=userdata.find_element_by_xpath('div[4]/p[1]/a') .text
+        url=userdata.find_element_by_xpath('div[4]/p[1]/a') .get_attribute('href')
+        gold=userdata.find_element_by_xpath('div[5]/div[1]/div[2]') .text
+        silver=userdata.find_element_by_xpath('div[5]/div[2]/div[2]') .text
+        bronze=userdata.find_element_by_xpath('div[5]/div[3]/div[2]') .text
+        points=userdata.find_element_by_xpath('div[6]') .text
+        points=points.replace(',','')
+        
+        rank_ls.append(rank)
+        tier_ls.append(tier)
+        name_ls.append(name)
+        url_ls.append(url)
+        gold_ls.append(gold)
+        silver_ls.append(silver)
+        bronze_ls.append(bronze)
+        points_ls.append(points)
+        #if i%100==0:
+        #    print(i)
+    except:
+        print(f'Number of users: {i+1}')
+        break
+        
+print('Scraping from the ranking ended')
+
 dic_names=['rank','tier','name','url','gold','silver','bronze','points']
 data_ls=[rank_ls,tier_ls,name_ls,url_ls,gold_ls,silver_ls,bronze_ls,points_ls]
 dic=dict(zip(dic_names,data_ls))
@@ -128,5 +143,6 @@ print('saving pickle end')
 
 print('saving csv start')
 df=pd.DataFrame(dic).replace({np.nan: 'UNKOWN'})
-df.to_csv('top_1000_comp_data.csv',index=False)
+#df.to_csv('top_1000_comp_data.csv',index=False)
+df.to_csv('top_1000_dataset_data.csv',index=False)
 print('saving csv end')
