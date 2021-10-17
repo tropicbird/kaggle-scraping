@@ -1,0 +1,1 @@
+I prepared scraping.py to make [this kaggle Dataset](https://www.kaggle.com/hdsk38/comp-top-1000-data).
