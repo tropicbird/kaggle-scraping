@@ -42,8 +42,8 @@ for ranking_type in ranking_ls:
     length=0
 
     print('Scrolling Sarted')
-    # while length<60000:
-    while length<500:
+    while length<60000:
+    #while length<500:
         tmp=length
         browser.execute_script("return arguments[0].scrollIntoView(false);", element)
         length=browser.execute_script("return arguments[0].scrollHeight", element)
@@ -115,24 +115,32 @@ for ranking_type in ranking_ls:
         dic = pickle.load(handle)
 
     for i, link in enumerate(dic['url']):
-        for j in range(3):  # Try maximum 3 times
+        for j in range(5):  # Try maximum 5 times
+            print(i, link)
+            cnt=0
             try:
-                time.sleep(5)
+                time.sleep(10)
+                if cnt:
+                    print('response')
                 response = requests.get(link)
+                if cnt:
+                    print('soup')
                 soup = BeautifulSoup(response.text, 'html.parser')
+                if cnt:
+                    print('json_data')
+                    print(soup.select('#site-body > script.kaggle-component')[0].contents[0])
                 json_data = json.loads(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:700].split('"bio":',1)[0][:-1]+'}')
                 country_ls.append(json_data['country'])
                 region_ls.append(json_data['region'])
                 city_ls.append(json_data['city'])
                 occupation_ls.append(json_data['occupation'])
                 organization_ls.append(json_data['organization'])
-                print(i, link)
                 break
-            except:
+            except Exception as e:
                 print(f'Try {j+1}')
-                print('error')
-                print(i, link)
-                time.sleep(10)
+                print(e)
+                cnt=1
+                time.sleep(100)
         else:
             break        
         
