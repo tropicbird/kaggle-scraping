@@ -68,7 +68,8 @@ for ranking_type in ranking_ls:
     points_ls=[]
 
     print('Scraping from the ranking started')
-    for i in tqdm(range(1000)):
+    #for i in tqdm(range(1000)):
+    for i in range(1000):
         try:
             userdata = base.find_element_by_xpath(f'div[{i+2}]/div/div')  
             rank=userdata.find_element_by_xpath('div[1]').text
