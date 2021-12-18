@@ -160,5 +160,5 @@ for ranking_type in ranking_ls:
     print('saving csv start')
     dt_now=datetime.datetime.now()
     df=pd.DataFrame(dic).replace({np.nan: 'UNKOWN'})
-    df.to_csv(f'/home/tropicbird/ranking_dataset/top_1000_{ranking_type}_{dt_now.year}_{dt_now.month}.csv',index=False)
+    df.to_csv(f'/home/tropicbird/ranking_dataset/{ranking_type}/top_1000_{ranking_type}_{dt_now.year}_{dt_now.month}.csv',index=False)
     print('saving csv end')
