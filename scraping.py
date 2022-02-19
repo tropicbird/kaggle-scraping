@@ -116,26 +116,46 @@ for ranking_type in ranking_ls:
         dic = pickle.load(handle)
 
     for i, link in enumerate(dic['url']):
+        cnt=0
         for j in range(5):  # Try maximum 5 times
             print(i, link)
-            cnt=0
             try:
                 time.sleep(10)
                 if cnt:
                     print('response')
+
                 response = requests.get(link)
+                #print(f"!!!response!!!{response}")
                 if cnt:
                     print('soup')
                 soup = BeautifulSoup(response.text, 'html.parser')
+                #print(f"!!!soup!!!{soup}")
+                #print(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:7000])
                 if cnt:
                     print('json_data')
                     print(soup.select('#site-body > script.kaggle-component')[0].contents[0])
-                json_data = json.loads(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:700].split('"bio":',1)[0][:-1]+'}')
-                country_ls.append(json_data['country'])
-                region_ls.append(json_data['region'])
-                city_ls.append(json_data['city'])
-                occupation_ls.append(json_data['occupation'])
-                organization_ls.append(json_data['organization'])
+                json_data = json.loads(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
+                #print(json_data)
+                try:
+                    country_ls.append(json_data['country'])
+                except KeyError:
+                    country_ls.append(np.nan)
+                try:
+                    region_ls.append(json_data['region'])
+                except KeyError:
+                    region_ls.append(np.nan)
+                try:
+                    city_ls.append(json_data['city'])
+                except KeyError:
+                    city_ls.append(np.nan)
+                try:
+                    occupation_ls.append(json_data['occupation'])
+                except KeyError:
+                    occupation_ls.append(np.nan)
+                try:
+                    organization_ls.append(json_data['organization'])
+                except KeyError:
+                    organization_ls.append(np.nan)
                 break
             except Exception as e:
                 print(f'Try {j+1}')
