@@ -89,7 +89,7 @@ for ranking_type in ranking_ls:
             points=userdata.find_element_by_xpath('div[6]').text
             points=points.replace(',','')
 
-                        rank_ls.append(rank)
+            rank_ls.append(rank)
             tier_ls.append(tier)
             name_ls.append(name)
             url_ls.append(url)
