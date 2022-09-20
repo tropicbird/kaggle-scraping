@@ -28,17 +28,20 @@ for ranking_type in ranking_ls:
     options.add_argument('--headless')
     browser = webdriver.Chrome('/home/tropicbird/kaggle-scraping/chromedriver',options=options)
     #browser = webdriver.Chrome('C:/Users/hdais/Dropbox/github/kaggle-ranking/driver/chromedriver_win32' + '/chromedriver',options=options)
-    
+
     print(f'ranking_type: {ranking_type}')
 
     browser.get(f'https://www.kaggle.com/rankings?group={ranking_type}')
     print(browser)
-    
+
     #In October 2021
     #element=browser.find_element_by_xpath("/html/body/main/div[1]/div/div[5]/div[3]")
-    
+
     #In November 2021
-    element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[4]/div[3]")
+    #element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[4]/div[3]")
+
+    #September 2022
+    element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[5]/div[2]")
     length=0
 
     print('Scrolling Sarted')
@@ -50,14 +53,18 @@ for ranking_type in ranking_ls:
         time.sleep(3)
         print(length)
         if tmp==length:
-            break    
+            break
     print('Scrolling Ended')
-    
+
     #In October 2021
     #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div/div[5]/div[3]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
-    
+
     #In November 2021
-    base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[4]/div[3]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+    #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[4]/div[3]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+
+    #September 2022
+    base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[5]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+
     rank_ls=[]
     tier_ls=[]
     name_ls=[]
@@ -71,7 +78,7 @@ for ranking_type in ranking_ls:
     #for i in tqdm(range(1000)):
     for i in range(1000):
         try:
-            userdata = base.find_element_by_xpath(f'div[{i+2}]/div/div')  
+            userdata = base.find_element_by_xpath(f'div[{i+2}]/div/div')
             rank=userdata.find_element_by_xpath('div[1]').text
             tier=userdata.find_element_by_xpath('div[2]/img').get_attribute('title')
             name=userdata.find_element_by_xpath('div[4]/p[1]/a').text
@@ -81,8 +88,8 @@ for ranking_type in ranking_ls:
             bronze=userdata.find_element_by_xpath('div[5]/div[3]/div[2]').text
             points=userdata.find_element_by_xpath('div[6]').text
             points=points.replace(',','')
-            
-            rank_ls.append(rank)
+
+                        rank_ls.append(rank)
             tier_ls.append(tier)
             name_ls.append(name)
             url_ls.append(url)
@@ -93,7 +100,7 @@ for ranking_type in ranking_ls:
         except:
             print(f'Number of users: {i+1}')
             break
-        
+
     print('Scraping from the ranking ended')
 
     dic_names=['rank','tier','name','url','gold','silver','bronze','points']
@@ -101,11 +108,10 @@ for ranking_type in ranking_ls:
     dic=dict(zip(dic_names,data_ls))
 
     browser.quit()
-    
+
     with open('data_ranking.pkl','wb') as handle:
         pickle.dump(dic, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    
     country_ls=[]
     region_ls=[]
     city_ls=[]
@@ -163,8 +169,8 @@ for ranking_type in ranking_ls:
                 cnt=1
                 time.sleep(100)
         else:
-            break        
-        
+            break
+
     dic['country']=country_ls
     dic['region']=region_ls
     dic['city']=city_ls
@@ -175,7 +181,6 @@ for ranking_type in ranking_ls:
     with open('data_ranking_final.pkl','wb') as handle:
         pickle.dump(dic, handle, protocol=pickle.HIGHEST_PROTOCOL)
     print('saving pickle end')
-
 
     print('saving csv start')
     dt_now=datetime.datetime.now()
