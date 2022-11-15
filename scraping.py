@@ -50,8 +50,8 @@ for ranking_type in ranking_ls:
     length=0
    
     print('Scrolling Sarted')
-    #while length<60000:
-    while length<500:
+    while length<60000:
+    #while length<500:
         tmp=length
         browser.execute_script("return arguments[0].scrollIntoView(false);", element)
         length=browser.execute_script("return arguments[0].scrollHeight", element)
