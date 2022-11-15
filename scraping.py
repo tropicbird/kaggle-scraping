@@ -38,12 +38,20 @@ for ranking_type in ranking_ls:
     #element=browser.find_element_by_xpath("/html/body/main/div[1]/div/div[5]/div[3]")
     
     #In November 2021
-    element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[4]/div[3]")
-    length=0
+    #element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[4]/div[3]")
+    
+    #September 2022
+    #element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[5]/div[2]")
+   
+    #November 2022
+    element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[6]/div[2]") 
 
+   
+    length=0
+   
     print('Scrolling Sarted')
-    while length<60000:
-    #while length<500:
+    #while length<60000:
+    while length<500:
         tmp=length
         browser.execute_script("return arguments[0].scrollIntoView(false);", element)
         length=browser.execute_script("return arguments[0].scrollHeight", element)
@@ -57,7 +65,14 @@ for ranking_type in ranking_ls:
     #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div/div[5]/div[3]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
     
     #In November 2021
-    base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[4]/div[3]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+    #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[4]/div[3]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+   
+    #September 2022
+    #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[5]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+
+    #November 2022
+    base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[6]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+
     rank_ls=[]
     tier_ls=[]
     name_ls=[]
