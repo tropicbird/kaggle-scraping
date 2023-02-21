@@ -44,8 +44,11 @@ for ranking_type in ranking_ls:
     #element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[5]/div[2]")
    
     #November 2022
-    element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[6]/div[2]") 
+    #element=browser.find_element_by_xpath("/html/body/main/div[1]/div[1]/div[6]/div[2]") 
 
+    #December 2022
+    element1=browser.find_element_by_xpath("/html/body/main/div[1]/div/div[6]/div[2]") 
+    element2=browser.find_element_by_xpath("/html/body/main/div[1]/div/div[6]") 
    
     length=0
    
@@ -53,8 +56,8 @@ for ranking_type in ranking_ls:
     while length<60000:
     #while length<500:
         tmp=length
-        browser.execute_script("return arguments[0].scrollIntoView(false);", element)
-        length=browser.execute_script("return arguments[0].scrollHeight", element)
+        browser.execute_script("return arguments[0].scrollIntoView(false);", element1)
+        length=browser.execute_script("return arguments[0].scrollHeight", element2)
         time.sleep(3)
         print(length)
         if tmp==length:
@@ -71,8 +74,12 @@ for ranking_type in ranking_ls:
     #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[5]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
 
     #November 2022
-    base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[6]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
-
+    #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[6]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+    
+    #Dec 2022
+    #base=browser.find_elements_by_xpath('/html/body/main/div[1]/div[1]/div[6]/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div[2]')[0]
+    base=browser.find_elements_by_xpath('/html/body/main/div[1]/div/div[6]/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div')[0]
+    
     rank_ls=[]
     tier_ls=[]
     name_ls=[]
@@ -85,8 +92,10 @@ for ranking_type in ranking_ls:
     print('Scraping from the ranking started')
     #for i in tqdm(range(1000)):
     for i in range(1000):
+        #userdata = base.find_element_by_xpath(f'div[{i+2}]/div/div')  
         try:
             userdata = base.find_element_by_xpath(f'div[{i+2}]/div/div')  
+            #print(userdata)
             rank=userdata.find_element_by_xpath('div[1]').text
             tier=userdata.find_element_by_xpath('div[2]/img').get_attribute('title')
             name=userdata.find_element_by_xpath('div[4]/p[1]/a').text
@@ -106,7 +115,7 @@ for ranking_type in ranking_ls:
             bronze_ls.append(bronze)
             points_ls.append(points)
         except:
-            print(f'Number of users: {i+1}')
+            print(f'Number of users: {i}')
             break
         
     print('Scraping from the ranking ended')
@@ -135,7 +144,7 @@ for ranking_type in ranking_ls:
         for j in range(5):  # Try maximum 5 times
             print(i, link)
             try:
-                time.sleep(10)
+                time.sleep(7)
                 if cnt:
                     print('response')
 
@@ -148,8 +157,11 @@ for ranking_type in ranking_ls:
                 #print(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:7000])
                 if cnt:
                     print('json_data')
-                    print(soup.select('#site-body > script.kaggle-component')[0].contents[0])
-                json_data = json.loads(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
+                    print(soup.select('#site-body > div > script.kaggle-component')[0].contents[0])
+                
+                #json_data = json.loads(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
+                #2023, February
+                json_data = json.loads(soup.select('#site-body > div > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
                 #print(json_data)
                 try:
                     country_ls.append(json_data['country'])
