@@ -159,9 +159,9 @@ for ranking_type in ranking_ls:
                     print('json_data')
                     print(soup.select('#site-body > div > script.kaggle-component')[0].contents[0])
                 
-                #json_data = json.loads(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
+                json_data = json.loads(soup.select('#site-body > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
                 #2023, February
-                json_data = json.loads(soup.select('#site-body > div > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
+                #json_data = json.loads(soup.select('#site-body > div > script.kaggle-component')[0].contents[0][77:].split('"userLastActive":',1)[0][:-1]+'}')
                 #print(json_data)
                 try:
                     country_ls.append(json_data['country'])
