@@ -1,0 +1,21 @@
+rank,tier,name,url,gold,silver,bronze,points,country,region,city,occupation,organization
+1,Grandmaster,bestfitting,https://www.kaggle.com/bestfitting,41,13,13,172853,UNKOWN,UNKOWN,UNKOWN,UNKOWN,UNKOWN
+2,Grandmaster,Psi,https://www.kaggle.com/philippsinger,33,7,7,172576,Austria,Vienna,Vienna,Senior Principal Data Scientist,H2O.AI
+3,Grandmaster,Dieter,https://www.kaggle.com/christofhenkel,35,16,16,159549,Germany,Bavaria,Munich,Deep Learning Data Scientist,Nvidia
+4,Grandmaster,tascj,https://www.kaggle.com/tascj0,12,8,8,126185,China,Zhejiang,Hangzhou,UNKOWN,UNKOWN
+5,Grandmaster,Chris Deotte,https://www.kaggle.com/cdeotte,21,21,21,125393,United States,California,San Diego,Data Scientist & Researcher,Nvidia
+6,Grandmaster,Qishen Ha,https://www.kaggle.com/haqishen,22,10,10,124917,Japan,Tokyo,Tokyo,Principal Data Scientist,H2O.ai
+7,Grandmaster,🐢 Jun Koda,https://www.kaggle.com/junkoda,5,4,4,121011,Japan,Tokyo,Tokyo,UNKOWN,UNKOWN
+8,Grandmaster,Pascal Pfeiffer,https://www.kaggle.com/ilu000,21,8,8,120070,Germany,North Rhine-Westphalia,Cologne,Principal Data Scientist,H2O.AI
+9,Grandmaster,nvnn,https://www.kaggle.com/nvnnghia,14,11,11,115745,Vietnam,Da Nang,Da Nang,UNKOWN,UNKOWN
+10,Grandmaster,hyd,https://www.kaggle.com/hydantess,9,6,6,114313,China,Zhejiang,Hangzhou,UNKOWN,UNKOWN
+11,Grandmaster,charmq,https://www.kaggle.com/charmq,13,6,6,110777,Japan,Tokyo,Tokyo,Engineer,Preferred Networks
+12,Grandmaster,CPMP,https://www.kaggle.com/cpmpml,25,28,28,107770,France,UNKOWN,UNKOWN,RAPIDS and deep learning,NVIDIA
+13,Grandmaster,Theo Viel,https://www.kaggle.com/theoviel,16,15,15,105392,France,Île-de-France,Paris,Applied ML,NVIDIA
+14,Grandmaster,Ahmet Erdem,https://www.kaggle.com/aerdem4,23,25,25,102993,Turkey,İstanbul,İstanbul,Data Science Director,Octai
+15,Grandmaster,Guanshuo Xu,https://www.kaggle.com/wowfattie,25,24,24,99793,United States,New York,New York,Data Scientist,H2O.ai
+16,Grandmaster,Nischay Dhankhar,https://www.kaggle.com/nischaydnk,7,25,25,96108,India,Haryana,Gurugram,Data Scientist,h2o.ai
+17,Grandmaster,Volodymyr,https://www.kaggle.com/vladimirsydor,6,10,10,93724,Ukraine,UNKOWN,Kyiv,Deep Learning engineer,Respeecher
+18,Grandmaster,Giba,https://www.kaggle.com/titericz,63,50,50,90176,Brazil,State of Paraná,Curitiba,Senior Data Scientist,NVIDIA RAPIDS
+19,Grandmaster,Selim Seferbekov,https://www.kaggle.com/selimsef,17,3,1,85780,United Kingdom,England,London,Machine Learning Engineer,Mapbox
+20,Grandmaster,Takoi,https://www.kaggle.com/takoihiraokazu,12,10,2,81639,Japan,Fukuoka,Fukuoka,Data Scientist,Rist

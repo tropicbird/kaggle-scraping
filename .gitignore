@@ -1,3 +1,5 @@
 /data_ranking.pkl
 /data_ranking_final.pkl
 old/
+venv/
+.DS_Store

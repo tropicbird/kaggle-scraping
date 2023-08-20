@@ -1,0 +1,8 @@
+selenium==3.141.0
+# pandas==0.23.3
+# numpy==1.16.2
+pandas
+numpy
+tqdm==4.62.3
+beautifulsoup4==4.7.1
+requests==2.26.0
