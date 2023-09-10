@@ -8,10 +8,14 @@
       "name": "Python: Current File",
       "type": "python",
       "request": "launch",
-      "program": "scraping.py",
+      // "program": "scraping_ranking.py",
+      "program": "scraping_userdata.py",
       "console": "integratedTerminal",
       "justMyCode": true,
-      "args": ["--ranking", "datasets"]
+      // "args": ["--ranking", "competitions"]
+      // "args": ["--ranking", "datasets"]
+      // "args": ["--ranking", "notebooks"]
+      "args": ["--ranking", "discussion"]
     }
   ]
 }
